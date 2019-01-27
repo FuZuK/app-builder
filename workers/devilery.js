@@ -2,10 +2,11 @@ const amqp = require('amqplib');
 const path = require('path');
 const Builder = require('../lib/builder');
 const sequelize = require('../lib/sequelize');
-const { build : builderConfig } = require('../etc/config');
-const { playground, project, destination, type, signing } = builderConfig;
+const emailSender = require('../lib/email-sender');
+const { build : builderConfig, siteUrl } = require('../etc/config');
 const { QUEUE_APPS_TO_DELIVER } = require('../lib/constants');
 
+const { playground, project, destination, type, signing } = builderConfig;
 const Order = sequelize.model('Order');
 
 async function main() {
@@ -51,7 +52,9 @@ async function main() {
 	async function deliverApp({ copyId, startTime, finishTime, buildTime }) {
 		const order = await Order.findOne({ where : { id : copyId } });
 
-		// send email
+		await emailSender.send(order.email, 'Build complete', 'build-complete.html', {
+			url : `${ siteUrl }/download/${ copyId }`
+		});
 
 		order.buildStartedAt = startTime;
 		order.buildFinishedAt = finishTime;

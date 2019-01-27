@@ -15,6 +15,13 @@
 			{% endfor %}
 		</div>
 		{% endif %}
+		{% if messages.length > 0 %}
+		<div class="alert alert-success">
+			{% for message in messages %}
+			<div>{{ message }}</div>
+			{% endfor %}
+		</div>
+		{% endif %}
 		{% block content %}{% endblock %}
 	</div>
 </body>

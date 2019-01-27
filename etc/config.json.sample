@@ -1,8 +1,9 @@
 {
 	"debug": false,
-    "timezone": "Europe/Kiev",
-    "build": {
-    	"project": "~/AndroidClient",
+	"timezone": "Europe/Kiev",
+	"siteUrl": "http://localhost:3000",
+	"build": {
+		"project": "~/AndroidClient",
 		"playground": "~/playground",
 		"destination": "~/builds",
 		"signing": {
@@ -11,9 +12,22 @@
 			"keyAlias": "android",
 			"keyPassword": "123456"
 		}
-    },
+	},
 	"server": {
 		"host": "127.0.0.1",
 		"port": 3000
+	},
+	"mail": {
+		"from": "admin@localhost",
+		"transport": "SMTP",
+		"transport_options": {
+			"host": "",
+			"port": "",
+			"secure": true,
+			"auth": {
+				"user": "",
+				"pass": ""
+			}
+		}
 	}
 }

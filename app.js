@@ -1,5 +1,4 @@
 const express = require('express');
-const nunjucks = require('nunjucks');
 const middlewares = require('./lib/middlewares');
 const { server, debug } = require('./etc/config');
 const router = require('./lib/router');
@@ -7,10 +6,6 @@ const router = require('./lib/router');
 const { port, host } = server;
 const app = express();
 
-nunjucks.configure('views', {
-	autoescape: true,
-	noCache: debug ? true : false
-});
 app.use(middlewares.cors);
 app.use(router);
 
