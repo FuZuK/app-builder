@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/order" method="post">
+	<div class="form-group">
+		<label>Package</label>
+		<input type="text" name="package" class="form-control">
+	</div>
+	<div class="form-group">
+		<label>Site (ex: http://google.com)</label>
+		<input type="text" name="site" class="form-control">
+	</div>
+	<div class="form-group">
+		<label>Build type</label>
+		<select name="type" class="form-control">
+			<option value="debug">Debug</option>
+			<option value="release">Release</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label>Email</label>
+		<input type="text" name="email" class="form-control">
+	</div>
+	<input type="submit" class="btn btn-primary" value="Build">
+</form>
+{% endblock %}

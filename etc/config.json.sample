@@ -1,0 +1,19 @@
+{
+	"debug": false,
+    "timezone": "Europe/Kiev",
+    "build": {
+    	"project": "~/AndroidClient",
+		"playground": "~/playground",
+		"destination": "~/builds",
+		"signing": {
+			"storeFile": "~/private-key.jks",
+			"storePassword": "123456",
+			"keyAlias": "android",
+			"keyPassword": "123456"
+		}
+    },
+	"server": {
+		"host": "127.0.0.1",
+		"port": 3000
+	}
+}

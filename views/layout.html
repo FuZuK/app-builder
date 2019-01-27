@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% if title %}{{ title }}{% else %}Builder{% endif %}</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<div class="container p-4">
+		{% if errors.length > 0 %}
+		<div class="alert alert-danger">
+			{% for error in errors %}
+			<div>{{ error }}</div>
+			{% endfor %}
+		</div>
+		{% endif %}
+		{% block content %}{% endblock %}
+	</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+	"logQueries": true,
+	"username": "root",
+	"password": "",
+	"database": "app-builder",
+	"host": "127.0.0.1",
+	"dialect": "mysql"
+}
