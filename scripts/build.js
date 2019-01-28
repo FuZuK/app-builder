@@ -1,32 +1,22 @@
 const amqp = require('amqplib');
+const { disconnect } = require('../lib/queue');
+const { runService } = require('../lib/services');
+const Order = require('../lib/services/order');
 const {
 	QUEUE_APPS_TO_BUILD
 } = require('../lib/constants');
 
 async function main() {
-	var connection, channel;
+	const data = await runService(Order, {
+		params : {
+			package : process.env.PACKAGE,
+			site    : process.env.SITE,
+			type    : process.env.TYPE,
+			email   : process.env.EMAIL
+		}
+	});
 
-	console.log(`Initializing...`);
-	await initAMQP();
-	console.log(`Initialized. Adding new task to the queue.`);
-	await createTask();
-	console.log(`Task was queued!`);
-
-	setTimeout(() => connection.close(), 3000);
-
-	async function initAMQP() {
-		connection = await amqp.connect();
-		channel = await connection.createChannel();
-		await channel.assertQueue(QUEUE_APPS_TO_BUILD);
-	}
-
-	async function createTask() {
-		await channel.sendToQueue(QUEUE_APPS_TO_BUILD, Buffer.from(JSON.stringify({
-			copyId     : parseInt(process.env.COPY_ID, 10),
-			appId      : process.env.APP_ID,
-			serverHost : process.env.SERVER_HOST
-		})));
-	}
+	setTimeout(disconnect, 3000);
 }
 
 main().catch(e => {

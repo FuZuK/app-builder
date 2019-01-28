@@ -1,10 +1,12 @@
-read -p 'Copy ID: ' COPY_ID
-read -p 'Package: ' APP_ID
-read -p 'Server host: ' SERVER_HOST
+read -p 'Package: ' PACKAGE
+read -p 'Site: ' SITE
+read -p 'Email: ' EMAIL
+read -p 'Type (debug, release): ' TYPE
 
-export COPY_ID=$COPY_ID
-export APP_ID=$APP_ID
-export SERVER_HOST=$SERVER_HOST
+export PACKAGE=$PACKAGE
+export SITE=$SITE
+export EMAIL=$EMAIL
+export TYPE=$TYPE
 
 node scripts/build.js
 
