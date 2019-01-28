@@ -63,15 +63,16 @@ async function main() {
 			copyId,
 			project,
 			playground,
+			type,
+			signing,
+			env          : process.env,
 			destination  : path.join(destination, `${ copyId }.apk`),
 			buildConfigs : {
 				applicationId : appId
 			},
 			appConfigs   : {
 				serverHost
-			},
-			type,
-			signing
+			}
 		});
 
 		await builder.build();
